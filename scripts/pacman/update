@@ -1,0 +1,8 @@
+#!/bin/bash
+
+echo "--------------------- pacman update --------------------------"
+sudo pacman -Syu --noconfirm
+if [ $? -eq 0 ]; then
+  echo "\n--------------------- AUR update --------------------------"
+  yay -Syu --noconfirm
+fi

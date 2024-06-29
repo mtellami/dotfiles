@@ -1,0 +1,8 @@
+
+
+if [ "$#" -eq 0 ]; then
+  echo "no package specified"
+else
+  echo "--------------------- pacman uninstall --------------------------"
+  sudo pacman -Rns "$@"
+fi

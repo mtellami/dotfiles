@@ -1,0 +1,17 @@
+#!/bin/sh
+
+I3_WALLPAPER=.config/i3/theme/wallpaper
+
+if [ $# -ne 1 ]; then
+    echo "Wrong arguments."
+    exit 1
+fi
+
+if [ ! -f "$1" ]; then
+    echo "wallpaper file does not exist."
+    exit 1
+fi
+
+cp $1 ~/$I3_WALLPAPER
+betterlockscreen -u $1
+i3-msg restart
