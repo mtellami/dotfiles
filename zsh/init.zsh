@@ -8,7 +8,7 @@
 
 # Global configuration
 export LOCAL_PATH="$HOME/.local/bin"
-export PATH="$LOCAL_PATH:$PATH"
+export PATH="$PATH:$HOME/.cargo/bin:$LOCAL_PATH"
 
 unset LD_PRELOAD
 set -o vi
@@ -17,6 +17,3 @@ set -o vi
 for config in ~/.config/zsh/config.d/*.zsh; do
   source $config
 done
-
-# Load Angular CLI autocompletion.
-source <(ng completion script)

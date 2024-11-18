@@ -27,4 +27,3 @@ prompt_symbol() {
 # Define Prompt
 PROMPT='$(prompt_symbol)'
 RPROMPT='$(branch)   %2~ |   %*%f'
-

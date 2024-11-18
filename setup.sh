@@ -27,4 +27,4 @@ if [ -f "$HOME/.config/nvim/init.lua" ]; then
 fi
 ln -s "$HOME/.dotfiles/nvim/init.lua" "$HOME/.config/nvim/init.lua"
 
-## 
+## to be complited ....

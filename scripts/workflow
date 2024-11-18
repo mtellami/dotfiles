@@ -1,0 +1,3 @@
+#!/bin/sh
+
+tmux new -c $HOME/Dev -n "Terminal"

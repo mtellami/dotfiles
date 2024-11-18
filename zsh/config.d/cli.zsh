@@ -10,6 +10,7 @@ export BAT_THEME="TwoDark"
 # Completion configuration
 autoload -Uz compinit
 compinit
+compdef _ls eza
 
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
@@ -19,7 +20,7 @@ zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 
 # fzf configuration
 export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git --exclude node_modules"
-export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_CTRL_T_COMMAND="fd --type=f --hidden --strip-cwd-prefix --exclude .git --exclude node_modules"
 export FZF_ALT_C_COMMAND="fd --type=d --hidden --strip-cwd-prefix --exclude .git --exclude node_modules"
 
 _fzf_compgen_path() {
@@ -36,14 +37,18 @@ export FZF_ALT_C_OPTS="--preview 'eza --tree --color=always {} | head -200'"
 _fzf_comprun() {
   local command=$1
   shift
+  local dir_preview="eza --tree --color=always {} | head -200"
+  local file_preview="bat -n --color=always --line-range :500 {}"
 
   case "$command" in
-    cd)           fzf --preview 'eza --tree --color=always {} | head -200' "$@" ;;
+    cd)           fzf --preview $dir_preview "$@" ;;
     export|unset) fzf --preview "eval 'echo $'{}"         "$@" ;;
     ssh)          fzf --preview 'dig {}'                   "$@" ;;
-    *)            fzf --preview "bat -n --color=always --line-range :500 {}" "$@" ;;
+    *)            fzf --preview "[[ -d {} ]] && $dir_preview || $file_preview" "$@" ;;
   esac
 }
+
+alias yt='yt-dlp -o "/home/mtellami/Downloads/videos/%(title)s.%(ext)s"'
 
 # Shell integrations
 eval "$(fzf --zsh)"

@@ -3,6 +3,12 @@ bindkey '^j' history-search-backward
 bindkey '^k' history-search-forward
 bindkey '^v' vi-cmd-mode
 
+# function run_lazygit() {
+#     lazygit
+# }
+# zle -N run_lazygit
+# bindkey '^G' run_lazygit
+
 # Define the zle widget
 # git_status_widget() {
 #   zle -I # Invalidate current input to clear the prompt
@@ -23,7 +29,6 @@ bindkey '^v' vi-cmd-mode
 ## Builtins
 
 # CTRL-u delete prompt input
-# ALT-c open fzf
 
 ## fzf-git keybindings
 

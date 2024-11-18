@@ -26,7 +26,6 @@ return {
     mason_lspconfig.setup({
       -- list of servers for mason to install
       ensure_installed = {
-        "tsserver",
         "html",
         "cssls",
         "tailwindcss",
@@ -38,6 +37,7 @@ return {
       ensure_installed = {
         "pylint", -- python linter
         "eslint_d", -- js linter
+        "prettier" -- formater
       },
     })
   end,

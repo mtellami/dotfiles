@@ -26,10 +26,10 @@ return {
 
     -- Set menu
     dashboard.section.buttons.val = {
-      dashboard.button("n", "   new File", "<cmd>ene<CR>"),
+      -- dashboard.button("n", "   new File", "<cmd>ene<CR>"),
       dashboard.button("f", "󰮗   find File", "<cmd>Telescope find_files<CR>"),
-      -- dashboard.button("e", "   file explorer", "<cmd>NvimTreeToggle<CR>"),
-      -- dashboard.button("t", "   find text", "<cmd>Telescope live_grep<CR>"),
+      dashboard.button("e", "   file explorer", "<cmd>NvimTreeToggle<CR>"),
+      dashboard.button("t", "   find text", "<cmd>Telescope live_grep<CR>"),
       dashboard.button("r", "󰁯   restore Session", "<cmd>SessionRestore<CR>"),
       dashboard.button("m", "   mason", "<cmd>Mason<CR>"),
       dashboard.button("l", "󱊍   lazy", "<cmd>Lazy<CR>"),

@@ -2,6 +2,8 @@ vim.cmd("let g:netrw_liststyle = 3")
 
 local opt = vim.opt
 
+opt.whichwrap='lh'
+vim.o.wrap = false
 -- line numbers
 opt.relativenumber = true -- show relative line numbers
 opt.number = true -- shows absolute line number on cursor line (when relative number is on)
@@ -36,3 +38,17 @@ opt.splitbelow = true -- split horizontal window to the bottom
 
 -- turn off swapfile
 opt.swapfile = false
+
+-- Undo history
+vim.o.undoreload=10000
+vim.o.undolevels=1000
+vim.o.history=200
+
+vim.o.undofile=true
+vim.o.undodir = vim.fn.stdpath('config') .. '/undo'
+
+-- stay in V mode on indentation
+vim.cmd([[
+  vnoremap > >gv
+  vnoremap < <gv
+]])

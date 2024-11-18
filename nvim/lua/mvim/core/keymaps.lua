@@ -2,28 +2,44 @@ vim.g.mapleader = " "
 
 local keymap = vim.keymap
 
-keymap.set("i", "jk", "<ESC>", { desc = "Exit insert mode with jk" })
+function Opts(description)
+  return { desc = description, noremap = true, silent = true }
+end
 
-keymap.set("n", "<leader>nh", ":nohl<CR>", { desc = "Clear search highlights" })
+-- global
+keymap.set("n", "<leader>q", "<cmd>qa<CR>", { desc = "Close neovim" }) -- close neovim
+keymap.set("n", "<leader>;", "<cmd>NvimTreeClose | Alpha<CR>", Opts("open dashboard")) -- open dashboard
+keymap.set("i", "ii", "<ESC>", { desc = "Exit insert mode with jk" }) -- exit insert mode
+keymap.set("n", "<leader>nh", ":nohl<CR>", Opts("Clear search highlights")) -- remove search highlight
 
--- increment/decrement numbers
-keymap.set("n", "<leader>+", "<C-a>", { desc = "Increment number" }) -- increment
-keymap.set("n", "<leader>-", "<C-x>", { desc = "Decrement number" }) -- decrement
+-- move lines and blocks
+keymap.set("n", "<A-j>", ":m .+1<CR>==", Opts("Move line down"))
+keymap.set("n", "<A-k>", ":m .-2<CR>==", Opts("Move line up"))
+keymap.set("v", "<A-j>", ":m '>+<CR>gv=gv", Opts("Move block of text up"))
+keymap.set("v", "<A-k>", ":m .-2<CR>gv=gv", Opts("Move block of text down"))
+
+-- resize windows
+keymap.set("n", "<C-Up>", ":resize -2<CR>", Opts("Resize Window up"))
+keymap.set("n", "<C-Down>", ":resize +2<CR>", Opts("Resize Window down"))
+keymap.set("n", "<C-Left>", ":vertical resize -2<CR>", Opts("Resize Window left"))
+keymap.set("n", "<C-Right>", ":vertical resize +2<CR>", Opts("Resize Window right"))
 
 -- window management
-keymap.set("n", "<leader>sv", "<C-w>v", { desc = "Split window vertically" }) -- split window vertically keymap.set("n", "<leader>sh", "<C-w>s", { desc = "Split window horizontally" }) -- split window horizontally
-keymap.set("n", "<leader>se", "<C-w>=", { desc = "Make splits equal size" }) -- make split windows equal width & height
-keymap.set("n", "<leader>sx", "<cmd>close<CR>", { desc = "Close current split" }) -- close current split window
+keymap.set("n", "<leader>wv", "<C-w>v", Opts("Split window vertically")) -- split window vertically 
+keymap.set("n", "<leader>wh", "<C-w>s", Opts("Split window horizontally")) -- split window horizontally
+keymap.set("n", "<leader>we", "<C-w>=", Opts("Make splits equal size")) -- make split windows equal width & height
+keymap.set("n", "<leader>wx", "<cmd>close<CR>", Opts("Close current split")) -- close current split window
 
--- tab management
-keymap.set("n", "<leader>to", "<cmd>tabnew<CR>", { desc = "Open new tab" }) -- open new tab
-keymap.set("n", "<leader>tx", "<cmd>tabclose<CR>", { desc = "Close current tab" }) -- close current tab
--- keymap.set("n", "<leader>tn", "<cmd>tabn<cr>", { desc = "go to next tab" }) --  go to next tab
--- keymap.set("n", "<leader>tp", "<cmd>tabp<cr>", { desc = "go to previous tab" }) --  go to previous tab
-keymap.set("n", "L", "<cmd>tabn<cr>", { desc = "go to next tab" }) --  go to next tab
-keymap.set("n", "H", "<cmd>tabp<cr>", { desc = "go to previous tab" }) --  go to previous tab
-keymap.set("n", "<leader>tf", "<cmd>tabnew %<CR>", { desc = "Open current buffer in new tab" }) --  move current buffer to new tab
+-- bufferline
+function CloseCurrentBuffer()
+  local current = vim.fn.bufnr('%')
+  vim.cmd("BufferLineCycleNext")
+  vim.cmd('bdelete! ' .. current)
+end
 
-keymap.set("n", "<leader>q", "<cmd>qa<CR>", { desc = "Close neovim" }) -- close neovim
-keymap.set("n", "<leader>;", "<cmd>Alpha<CR>", { desc = "open dashboard" })
-keymap.set("n", "<leader>S", "<cmd>wa<CR>", { desc = "save changes" })
+keymap.set('n', '<leader>c', CloseCurrentBuffer, { desc = "buffer close picker" }) -- close current buffer
+keymap.set('n', 'L', '<CMD>BufferLineCycleNext<CR>', { desc = "Navigate to next buffer" }) -- buffers navigation
+keymap.set('n', 'H', '<CMD>BufferLineCyclePrev<CR>', { desc = "Navigate to previous buffer" }) -- buffers navigation
+
+keymap.set('n', ':', '<cmd>FineCmdline<CR>', Opts("fine cmd line")) -- Fine CMD line
+keymap.set('n', '<leader>lf', '<cmd>silent !prettier --write %<CR>', Opts("run formatter.")) -- prettier

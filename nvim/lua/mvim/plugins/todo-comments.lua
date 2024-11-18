@@ -2,20 +2,22 @@ return {
   "folke/todo-comments.nvim",
   event = { "BufReadPre", "BufNewFile" },
   dependencies = { "nvim-lua/plenary.nvim" },
+  colors = {
+    error = { "DiagnosticError", "ErrorMsg", "#DC2626" },
+    warning = { "DiagnosticWarn", "WarningMsg", "#FBBF24" },
+    info = { "DiagnosticInfo", "#2563EB" },
+    hint = { "DiagnosticHint", "#10B981" },
+    default = { "#000000" },
+  },
   config = function()
-    local todo_comments = require("todo-comments")
+   require("todo-comments").setup()
+  end
 
-    -- set keymaps
-    local keymap = vim.keymap -- for conciseness
-
-    keymap.set("n", "]t", function()
-      todo_comments.jump_next()
-    end, { desc = "Next todo comment" })
-
-    keymap.set("n", "[t", function()
-      todo_comments.jump_prev()
-    end, { desc = "Previous todo comment" })
-
-    todo_comments.setup()
-  end,
+  -- INFO: (info, note)
+  -- PERF: (perf, optim, performance, optimize)
+  -- HACK: hmmm, this looks a bit funky
+  -- TODO: what else?
+  -- FIX: (fix, bug)
+  -- WARNING: (warning, xxx)
+  -- TEST: (testing, passed, failed)
 }
