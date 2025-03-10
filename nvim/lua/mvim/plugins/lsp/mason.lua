@@ -37,7 +37,8 @@ return {
       ensure_installed = {
         "pylint", -- python linter
         "eslint_d", -- js linter
-        "prettier" -- formater
+        "prettier", -- formater
+        "google-java-format"
       },
     })
   end,

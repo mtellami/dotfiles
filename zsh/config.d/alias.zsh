@@ -45,3 +45,4 @@ alias cat="bat"
 if [ -f "$HOME/Dev/dev-alias.zsh" ]; then
   source "$HOME/Dev/dev-alias.zsh"
 fi
+alias todos='cat /home/mtellami/Home/notes/todos.note.md'

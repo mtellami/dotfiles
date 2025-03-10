@@ -83,7 +83,7 @@ return {
         if server_name == "angularls" then
           lspconfig[server_name].setup({
             capabilities = capabilities,
-            root_dir = require('lspconfig.util').root_pattern('.git', 'angular.json', 'project.json')
+            root_dir = require('lspconfig.util').root_pattern('angular.json', 'project.json', '.git' )
           })
         else
           lspconfig[server_name].setup({

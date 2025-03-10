@@ -8,7 +8,7 @@
 
 # Global configuration
 export LOCAL_PATH="$HOME/.local/bin"
-export PATH="$PATH:$HOME/.cargo/bin:$LOCAL_PATH"
+export PATH="$PATH:$HOME/.cargo/bin:$LOCAL_PATH:$HOME/jpm/bin:$HOME/go/bin:$HOME/flutter/bin"
 
 unset LD_PRELOAD
 set -o vi

@@ -42,4 +42,10 @@ keymap.set('n', 'L', '<CMD>BufferLineCycleNext<CR>', { desc = "Navigate to next 
 keymap.set('n', 'H', '<CMD>BufferLineCyclePrev<CR>', { desc = "Navigate to previous buffer" }) -- buffers navigation
 
 keymap.set('n', ':', '<cmd>FineCmdline<CR>', Opts("fine cmd line")) -- Fine CMD line
-keymap.set('n', '<leader>lf', '<cmd>silent !prettier --write %<CR>', Opts("run formatter.")) -- prettier
+keymap.set('n', '<leader>lp', '<cmd>silent !prettier --write %<CR>', Opts("run prettier.")) -- prettier
+keymap.set('n', '<leader>ld', '<cmd>silent !dart format %<CR>', Opts("run dart formater.")) -- dart formatter
+keymap.set('n', '<leader>lf', '<cmd>Format<CR>', Opts("run formatters.")) -- formatters
+
+-- git diff view
+keymap.set("n", "<leader>gd", "<Cmd>:DiffviewOpen<CR>", Opts("Open git diff view"))
+keymap.set("n", "<leader>gc", "<Cmd>:DiffviewClose<CR>", Opts("Close git diff view"))

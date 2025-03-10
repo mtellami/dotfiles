@@ -15,6 +15,7 @@ return {
         virtual_text_column = 1,  -- virtual text start column, check Start virtual text at column section for more options
     },
     keys = {
-      { "<leader>gb", "<cmd>GitBlameToggle<CR>", desc = "Git blame" },
+      { "<leader>gb", "<CMD>GitBlameToggle<CR>", desc = "Toggle git blame" },
+      { "<leader>go", "<CMD>GitBlameOpenCommitURL<CR>", desc = "Open commit url" }
     }
 }

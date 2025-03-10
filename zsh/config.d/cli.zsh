@@ -43,7 +43,7 @@ _fzf_comprun() {
   case "$command" in
     cd)           fzf --preview $dir_preview "$@" ;;
     export|unset) fzf --preview "eval 'echo $'{}"         "$@" ;;
-    ssh)          fzf --preview 'dig {}'                   "$@" ;;
+    ssh)          fzf --preview 'dig {}'                  "$@" ;;
     *)            fzf --preview "[[ -d {} ]] && $dir_preview || $file_preview" "$@" ;;
   esac
 }
