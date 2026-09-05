@@ -1,0 +1,106 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "lsp": true,
+  "formatter": true,
+
+  "mcp": {
+    "tavily": {
+      "type": "remote",
+      "url": "https://mcp.tavily.com/mcp/?tavilyApiKey=YOUR_API_KEY",
+      "enabled": true
+    },
+    "firecrawl": {
+      "type": "remote",
+      "url": "https://mcp.firecrawl.dev/YOUR_API_KEY/v2/mcp"
+    },
+
+    "context7": {
+      "type": "local",
+      "command": ["npx", "-y", "@upstash/context7-mcp"],
+      "env": {
+        "CONTEXT7_API_KEY": "YOUR_API_KEY"
+      },
+      "enabled": true
+    },
+
+    "playwright": {
+      "type": "local",
+      "command": ["npx", "-y", "@playwright/mcp@latest"],
+      "enabled": true
+    },
+    "sequential-thinking": {
+      "type": "local",
+      "command": [
+        "npx",
+        "-y",
+        "@modelcontextprotocol/server-sequential-thinking"
+      ],
+      "enabled": false
+    },
+    "mermaid": {
+      "type": "remote",
+      "url": "https://mcp.mermaidchart.com",
+      "headers": {
+        "Authorization": "Bearer YOUR_API_KEY"
+      }
+    },
+    "excalidraw": {
+      "type": "local",
+      "command": ["npx", "-y", "excalidraw-mcp"],
+      "enabled": true
+    },
+    "notion": {
+      "type": "remote",
+      "url": "https://mcp.notion.com/mcp"
+    },
+    "obsidian": {
+      "type": "local",
+      "command": ["npx", "-y", "@zethictech/obsidian-mcp"],
+      "environment": {
+        "OBSIDIAN_VAULT": "ObsidianVault"
+      }
+    }
+  },
+
+  "provider": {
+    "ollama": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Local Ollama",
+      "options": {
+        "baseURL": "http://127.0.0.1:11434/v1"
+      },
+      "models": {
+        "qwen2.5-coder": {
+          "name": "Qwen2.5 Coder",
+          "limit": {
+            "context": 8192,
+            "output": 4096
+          }
+        },
+        "qwen3:8b": {
+          "name": "Qwen3 8B",
+          "limit": {
+            "context": 8192,
+            "output": 4096
+          }
+        },
+        "deepseek-coder:6.7b": {
+          "name": "Deepseek Coder:6.7b",
+          "limit": {
+            "context": 8192,
+            "output": 4096
+          }
+        },
+        "qwen3-coder": {
+          "name": "Qwen3 Coder",
+          "limit": {
+            "context": 16384,
+            "output": 4096
+          }
+        }
+      }
+    }
+  },
+
+  "model": "opencode/deepseek-v4-flash-free"
+}

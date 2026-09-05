@@ -4,6 +4,33 @@ return {
 		require("formatter").setup({
 			logging = true,
 			filetype = {
+				tex = {
+					function()
+						return {
+							exe = "/usr/bin/latexinden",
+							args = { "-" },
+							stdin = true,
+						}
+					end,
+				},
+				sql = {
+					function()
+						return {
+							exe = vim.fn.stdpath("data") .. "/mason/bin/sql-formatter",
+							args = { "--language", "postgresql" },
+							stdin = true,
+						}
+					end,
+				},
+				yaml = {
+					function()
+						return {
+							exe = vim.fn.stdpath("data") .. "/mason/bin/prettier",
+							args = { "--stdin-filepath", vim.api.nvim_buf_get_name(0) },
+							stdin = true,
+						}
+					end,
+				},
 				javascript = {
 					function()
 						return {

@@ -3,7 +3,11 @@ return {
   event = { "BufReadPre", "BufNewFile" },
   dependencies = { "nvim-lua/plenary.nvim" },
   config = function()
-   require("todo-comments").setup()
+   require("todo-comments").setup({
+     highlight = {
+       before = "",
+     }
+   })
   end
 
   -- INFO: (info, note)

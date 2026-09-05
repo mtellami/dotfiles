@@ -10,7 +10,7 @@ return {
     require("nvim-tree").setup({
       filters = {
         dotfiles = true,
-        exclude = { ".env" }
+        -- exclude = { ".env" }
       },
       update_focused_file = {
         enable = true,

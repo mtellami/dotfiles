@@ -17,3 +17,12 @@ set -o vi
 for config in ~/.config/zsh/config.d/*.zsh; do
   source $config
 done
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
+
+
+
+OBSIDIAN_CLI_PATH=/usr/bin/obsidian
